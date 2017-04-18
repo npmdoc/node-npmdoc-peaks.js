@@ -1,0 +1,413 @@
+<html><head></head><body><div class="apidocDiv">
+<style>
+/*csslint
+*/
+.apidocDiv {
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.apidocDiv a[href] {
+    color: #33f;
+    font-weight: bold;
+    text-decoration: none;
+}
+.apidocDiv a[href]:hover {
+    text-decoration: underline;
+}
+.apidocCodeCommentSpan {
+    background: #bbf;
+    color: #000;
+    display: block;
+}
+.apidocCodeKeywordSpan {
+    color: #d00;
+    font-weight: bold;
+}
+.apidocCodePre {
+    background: #eef;
+    border: 1px solid;
+    color: #777;
+    padding: 5px;
+    white-space: pre-wrap;
+}
+.apidocFooterDiv {
+    margin-top: 20px;
+    text-align: center;
+}
+.apidocModuleLi {
+    margin-top: 10px;
+}
+.apidocSectionDiv {
+    border-top: 1px solid;
+    margin-top: 20px;
+}
+.apidocSignatureSpan {
+    color: #777;
+    font-weight: bold;
+}
+</style>
+<h1>api documentation for
+    <a href="https://github.com/bbc/peaks.js#readme">peaks.js (v0.6.0)</a>
+</h1>
+<h4>Frontend app for displaying audio waveforms</h4>
+<div class="apidocSectionDiv"><a href="#apidoc.tableOfContents" id="apidoc.tableOfContents"><h1>table of contents</h1></a><ol>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.peaks.js">module peaks.js</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.peaks.js.js.karma_conf">
+            function <span class="apidocSignatureSpan">peaks.js.</span>js.karma_conf
+            <span class="apidocSignatureSpan">(config)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.peaks.js.karma_conf">module peaks.js.karma_conf</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.peaks.js.karma_conf.karma_conf">
+            function <span class="apidocSignatureSpan">peaks.js.</span>karma_conf
+            <span class="apidocSignatureSpan">(config)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+</ol></div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.peaks.js" id="apidoc.module.peaks.js">module peaks.js</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.peaks.js.js.karma_conf" id="apidoc.element.peaks.js.js.karma_conf">
+        function <span class="apidocSignatureSpan">peaks.js.</span>js.karma_conf
+        <span class="apidocSignatureSpan">(config)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">js.karma_conf = function (config) {
+  var isCI   = Boolean(process.env.CI) &amp;&amp; Boolean(process.env.BROWSER_STACK_ACCESS_KEY);
+
+  // Karma configuration
+  config.set({
+    // base path, that will be used to resolve files and exclude
+    basePath: '',
+
+    frameworks: ['mocha', 'sinon-chai'],
+
+    client: {
+      chai: {
+        includeStack: true
+      },
+      mocha: {
+        timeout: 5000
+      }
+    },
+
+    // list of files / patterns to load in the browser
+    files: [
+      'peaks.js',
+      { pattern: 'test/test_img/*', included: false },
+      { pattern: 'test_data/*', included: false },
+      { pattern: 'test_data/sample.{dat,json}', included: false, served: true },
+      { pattern: 'test/*.html' },
+      'test/load-fixtures.js',
+      'test/unit/**/*.js',
+    ],
+
+    preprocessors: {
+      'test/*.html': ['html2js']
+    },
+
+    // list of files to exclude
+    //exclude: ['lib/js/main.js'],
+
+    // test results reporter to use
+    // possible values: dots || progress || growl || spec
+    reporters : isCI ? ['dots'] : ['spec'],
+
+    // web server port
+    port: 8080,
+
+    // CLI runner port
+    runnerPort: 9100,
+
+    // enable / disable colors in the output (reporters and logs)
+    colors: true,
+
+    // level of logging
+    // possible values: LOG_DISABLE || LOG_ERROR || LOG_WARN || LOG_INFO || LOG_DEBUG
+    logLevel: config.LOG_INFO,
+
+    // enable / disable watching file and executing tests whenever any file changes
+    autoWatch: false,
+
+    browserDisconnectTolerance: isCI ? 3 : 1,
+    browserNoActivityTimeout: isCI ? 120000 : null,
+
+    browserStack: {
+      build: process.env.TRAVIS_JOB_NUMBER || ('localhost ' + Date.now()),
+      project: 'bbcrd/peaks.js'
+    },
+
+    customLaunchers: {
+      'BSChrome27': {
+        base: 'BrowserStack',
+        browser: 'chrome',
+        browser_version: '27.0',
+        os: 'Windows',
+        os_version: 'XP'
+      },
+      'BSChromeLatest': {
+        base: 'BrowserStack',
+        browser: 'chrome',
+        browser_version: 'latest',
+        os: 'OS X',
+        os_version: 'Mavericks'
+      },
+      'BSFirefox26': {
+        base: 'BrowserStack',
+        browser: 'firefox',
+        browser_version: '26.0',
+        os: 'Windows',
+        os_version: '7'
+      },
+      'BSFirefoxLatest': {
+        base: 'BrowserStack',
+        browser: 'firefox',
+        browser_version: 'latest',
+        os: 'OS X',
+        os_version: 'Mavericks'
+      },
+      'BSSafari6': {
+        base: 'BrowserStack',
+        browser: 'safari',
+        browser_version: '6.0',
+        os: 'OS X',
+        os_version: 'Lion'
+      },
+      'BSSafari7': {
+        base: 'BrowserStack',
+        browser: 'safari',
+        browser_version: '7.0',
+        os: 'OS X',
+        os_version: 'Mavericks'
+      },
+      'BSIE9': {
+        base: 'BrowserStack',
+        browser: 'ie',
+        browser_version: '9.0',
+        os: 'Windows',
+        os_version: '7'
+      },
+      'BSIE10': {
+        base: 'BrowserStack',
+        browser: 'ie',
+        browser_version: '10',
+        os: 'Windows',
+        os_version: '8'
+      },
+      'BSIE11': {
+        base: 'BrowserStack',
+        browser: 'ie',
+        browser_version: '11',
+        os: 'Windows',
+        os_version: '8.1'
+      }
+    },
+
+    // If browser does not capture in given timeout [ms], kill it
+    captureTimeout : 120000,
+
+    // Continuous Integration mode
+    // if true, it capture browsers, run tests and exit
+    singleRun : true
+  });
+
+  config.set({
+    browsers: isCI
+      ? filterBrowsers(config.customLaunchers, /^BS/)
+      : ['Chrome', 'Safari', 'Firefox', 'IE9 - Win7']
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.peaks.js.karma_conf" id="apidoc.module.peaks.js.karma_conf">module peaks.js.karma_conf</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.peaks.js.karma_conf.karma_conf" id="apidoc.element.peaks.js.karma_conf.karma_conf">
+        function <span class="apidocSignatureSpan">peaks.js.</span>karma_conf
+        <span class="apidocSignatureSpan">(config)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">karma_conf = function (config) {
+  var isCI   = Boolean(process.env.CI) &amp;&amp; Boolean(process.env.BROWSER_STACK_ACCESS_KEY);
+
+  // Karma configuration
+  config.set({
+    // base path, that will be used to resolve files and exclude
+    basePath: '',
+
+    frameworks: ['mocha', 'sinon-chai'],
+
+    client: {
+      chai: {
+        includeStack: true
+      },
+      mocha: {
+        timeout: 5000
+      }
+    },
+
+    // list of files / patterns to load in the browser
+    files: [
+      'peaks.js',
+      { pattern: 'test/test_img/*', included: false },
+      { pattern: 'test_data/*', included: false },
+      { pattern: 'test_data/sample.{dat,json}', included: false, served: true },
+      { pattern: 'test/*.html' },
+      'test/load-fixtures.js',
+      'test/unit/**/*.js',
+    ],
+
+    preprocessors: {
+      'test/*.html': ['html2js']
+    },
+
+    // list of files to exclude
+    //exclude: ['lib/js/main.js'],
+
+    // test results reporter to use
+    // possible values: dots || progress || growl || spec
+    reporters : isCI ? ['dots'] : ['spec'],
+
+    // web server port
+    port: 8080,
+
+    // CLI runner port
+    runnerPort: 9100,
+
+    // enable / disable colors in the output (reporters and logs)
+    colors: true,
+
+    // level of logging
+    // possible values: LOG_DISABLE || LOG_ERROR || LOG_WARN || LOG_INFO || LOG_DEBUG
+    logLevel: config.LOG_INFO,
+
+    // enable / disable watching file and executing tests whenever any file changes
+    autoWatch: false,
+
+    browserDisconnectTolerance: isCI ? 3 : 1,
+    browserNoActivityTimeout: isCI ? 120000 : null,
+
+    browserStack: {
+      build: process.env.TRAVIS_JOB_NUMBER || ('localhost ' + Date.now()),
+      project: 'bbcrd/peaks.js'
+    },
+
+    customLaunchers: {
+      'BSChrome27': {
+        base: 'BrowserStack',
+        browser: 'chrome',
+        browser_version: '27.0',
+        os: 'Windows',
+        os_version: 'XP'
+      },
+      'BSChromeLatest': {
+        base: 'BrowserStack',
+        browser: 'chrome',
+        browser_version: 'latest',
+        os: 'OS X',
+        os_version: 'Mavericks'
+      },
+      'BSFirefox26': {
+        base: 'BrowserStack',
+        browser: 'firefox',
+        browser_version: '26.0',
+        os: 'Windows',
+        os_version: '7'
+      },
+      'BSFirefoxLatest': {
+        base: 'BrowserStack',
+        browser: 'firefox',
+        browser_version: 'latest',
+        os: 'OS X',
+        os_version: 'Mavericks'
+      },
+      'BSSafari6': {
+        base: 'BrowserStack',
+        browser: 'safari',
+        browser_version: '6.0',
+        os: 'OS X',
+        os_version: 'Lion'
+      },
+      'BSSafari7': {
+        base: 'BrowserStack',
+        browser: 'safari',
+        browser_version: '7.0',
+        os: 'OS X',
+        os_version: 'Mavericks'
+      },
+      'BSIE9': {
+        base: 'BrowserStack',
+        browser: 'ie',
+        browser_version: '9.0',
+        os: 'Windows',
+        os_version: '7'
+      },
+      'BSIE10': {
+        base: 'BrowserStack',
+        browser: 'ie',
+        browser_version: '10',
+        os: 'Windows',
+        os_version: '8'
+      },
+      'BSIE11': {
+        base: 'BrowserStack',
+        browser: 'ie',
+        browser_version: '11',
+        os: 'Windows',
+        os_version: '8.1'
+      }
+    },
+
+    // If browser does not capture in given timeout [ms], kill it
+    captureTimeout : 120000,
+
+    // Continuous Integration mode
+    // if true, it capture browsers, run tests and exit
+    singleRun : true
+  });
+
+  config.set({
+    browsers: isCI
+      ? filterBrowsers(config.customLaunchers, /^BS/)
+      : ['Chrome', 'Safari', 'Firefox', 'IE9 - Win7']
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocFooterDiv">
+    [ this document was created with
+    <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a>
+    ]
+</div>
+</div>
+</body></html>
