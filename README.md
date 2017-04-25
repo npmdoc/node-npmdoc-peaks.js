@@ -1,4 +1,7 @@
-# api documentation for  [peaks.js (v0.6.0)](https://github.com/bbc/peaks.js#readme)  [![npm package](https://img.shields.io/npm/v/npmdoc-peaks.js.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-peaks.js) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-peaks.js.svg)](https://travis-ci.org/npmdoc/node-npmdoc-peaks.js)
+# npmdoc-peaks.js
+
+#### basic api documentation for  [peaks.js (v0.6.0)](https://github.com/bbc/peaks.js#readme)  [![npm package](https://img.shields.io/npm/v/npmdoc-peaks.js.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-peaks.js) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-peaks.js.svg)](https://travis-ci.org/npmdoc/node-npmdoc-peaks.js)
+
 #### Frontend app for displaying audio waveforms
 
 [![NPM](https://nodei.co/npm/peaks.js.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/peaks.js)
@@ -134,7 +137,8 @@
         "test": "./node_modules/karma/bin/karma start",
         "test-watch": "npm test -- --auto-watch --no-single-run"
     },
-    "version": "0.6.0"
+    "version": "0.6.0",
+    "bin": {}
 }
 ```
 
